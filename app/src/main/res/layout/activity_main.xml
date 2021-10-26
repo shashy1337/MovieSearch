@@ -24,7 +24,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:background="#7D40D5" />
+        android:background="#7D40D5"/>
     <FrameLayout
         android:id="@+id/top_menu"
         android:layout_width="match_parent"
