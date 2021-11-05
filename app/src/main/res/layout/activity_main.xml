@@ -4,36 +4,166 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/main_background_shape"
     tools:context=".MainActivity">
 
-    <LinearLayout
-        android:id="@+id/button_menu"
-        android:layout_width="300dp"
-        android:layout_height="500dp"
-        android:background="#D8B264"
-        android:orientation="vertical"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/button_menu_main"
+        android:layout_width="@dimen/button_menu_width"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="@dimen/corner_radius"
         app:layout_constraintTop_toBottomOf="@+id/top_menu"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/lower_menu" />
+        app:layout_constraintBottom_toTopOf="@id/lower_menu" >
+
+        <LinearLayout
+            android:layout_width="@dimen/button_menu_width"
+            android:orientation="vertical"
+            android:background="@drawable/pretty_card_view"
+            android:layout_height="wrap_content">
+
+
+            <Button
+                android:id="@+id/button_menu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/button_margins"
+                android:background="@drawable/pretty_buttons"
+                android:textColor="@color/white"
+                android:text="@string/button_menu" />
+
+            <Button
+                android:id="@+id/button_fav"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/button_margins"
+                android:background="@drawable/pretty_buttons"
+                android:textColor="@color/white"
+                android:text="@string/button_fav" />
+
+            <Button
+                android:id="@+id/button_later"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/button_margins"
+                android:background="@drawable/pretty_buttons"
+                android:textColor="@color/white"
+                android:text="@string/button_later" />
+
+            <Button
+                android:id="@+id/button_compilation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/button_margins"
+                android:background="@drawable/pretty_buttons"
+                android:textColor="@color/white"
+                android:text="@string/button_compilation" />
+
+            <Button
+                android:id="@+id/button_settings"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/button_margins"
+                android:background="@drawable/pretty_buttons"
+                android:textColor="@color/white"
+                android:text="@string/button_settings" />
+
+        </LinearLayout>
+
+
+
+    </androidx.cardview.widget.CardView>
+
 
     <FrameLayout
         android:id="@+id/lower_menu"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
+        android:layout_height="@dimen/top_bottom_menu_height"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:background="#7D40D5"/>
-    <FrameLayout
+        android:background="#663FAD"
+        />
+
+    <androidx.cardview.widget.CardView
         android:id="@+id/top_menu"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
+        app:cardCornerRadius="@dimen/top_bottom_margin"
+        android:layout_margin="@dimen/top_bottom_margin"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:background="#7D40D5"
-        />
+        android:layout_height="@dimen/top_bottom_menu_height"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/top_bottom_menu_height"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+
+            <ImageView
+                android:id="@+id/imageView1"
+                android:scaleType="centerCrop"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/no_time" />
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:scaleType="centerCrop"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/rhapsody" />
+
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:scaleType="centerCrop"
+                app:srcCompat="@drawable/dora" />
+
+            <ImageView
+                android:id="@+id/imageView4"
+                android:scaleType="centerCrop"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/film" />
+
+            <ImageView
+                android:id="@+id/imageView5"
+                android:scaleType="centerCrop"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/halloween" />
+        </LinearLayout>
+
+
+
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/top_bottom_margin"
+        android:text="@string/posters"
+        android:textSize="@dimen/text_size"
+        android:clickable="true"
+        android:textColor="@color/white"
+        android:autoLink="web"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/top_menu"
+        android:focusable="true" />
 
 
 

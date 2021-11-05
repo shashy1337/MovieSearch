@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">MovieSearch</string>
+    <string name="button_menu">Меню</string>
+    <string name="button_fav">Избранное</string>
+    <string name="button_later">Посмотреть позже</string>
+    <string name="button_compilation">Подборки</string>
+    <string name="button_settings">Настройки</string>
+    <string name="posters">Все постеры были взяты с: movieposters.com</string>
 </resources>
