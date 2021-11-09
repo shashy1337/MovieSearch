@@ -4,40 +4,60 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.Toast
+import com.google.android.material.appbar.MaterialToolbar
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        initButtons()
+        topBottomBarInit()
     }
 
-    fun initButtons(){
-        val buttonMenu = findViewById<Button>(R.id.button_menu)
-        val buttonFav = findViewById<Button>(R.id.button_fav)
-        val buttonLater = findViewById<Button>(R.id.button_later)
-        val buttonCompil = findViewById<Button>(R.id.button_compilation)
-        val buttonSettings = findViewById<Button>(R.id.button_settings)
+    fun topBottomBarInit(){
+        val topbar = findViewById<MaterialToolbar>(R.id.top_menu)
+        topbar.setNavigationOnClickListener {
+            Toast.makeText(this, R.string.navigation, Toast.LENGTH_SHORT).show()
+        }
+        topbar.setOnMenuItemClickListener {
+            when(it.itemId){
+                R.id.settings_top -> {
+                    Toast.makeText(this, R.string.settings, Toast.LENGTH_SHORT).show()
+                    return@setOnMenuItemClickListener true
+                }
 
-        buttonMenu.setOnClickListener {
-            Toast.makeText(this, R.string.button_menu, Toast.LENGTH_SHORT).show()
+                R.id.more -> {
+                    Toast.makeText(this, R.string.more, Toast.LENGTH_SHORT).show()
+                    return@setOnMenuItemClickListener true
+                }
+
+                else -> return@setOnMenuItemClickListener false
+            }
         }
 
-        buttonFav.setOnClickListener {
-            Toast.makeText(this, R.string.button_fav,  Toast.LENGTH_SHORT).show()
+        val bottomBar = findViewById<BottomNavigationView>(R.id.lower_menu)
+        bottomBar.setOnItemSelectedListener {
+            when(it.itemId){
+                R.id.compillation -> {
+                    Toast.makeText(this, R.string.compilation, Toast.LENGTH_SHORT).show()
+                    return@setOnItemSelectedListener true
+                }
+                R.id.favourite -> {
+                    Toast.makeText(this, R.string.fav, Toast.LENGTH_SHORT).show()
+                    return@setOnItemSelectedListener true
+                }
+                R.id.menu -> {
+                    Toast.makeText(this, R.string.menu, Toast.LENGTH_SHORT).show()
+                    return@setOnItemSelectedListener true
+                }
+                R.id.watch_later -> {
+                    Toast.makeText(this, R.string.later, Toast.LENGTH_SHORT).show()
+                    return@setOnItemSelectedListener true
+                }
+                else -> return@setOnItemSelectedListener false
+            }
         }
-
-        buttonLater.setOnClickListener {
-            Toast.makeText(this, R.string.button_later, Toast.LENGTH_SHORT).show()
-        }
-
-        buttonCompil.setOnClickListener {
-            Toast.makeText(this, R.string.button_compilation, Toast.LENGTH_SHORT).show()
-        }
-
-        buttonSettings.setOnClickListener {
-            Toast.makeText(this, R.string.button_settings, Toast.LENGTH_SHORT).show()
-        }
-
     }
+
+
 }
