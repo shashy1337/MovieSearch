@@ -7,4 +7,6 @@
     <dimen name="corner_radius">15dp</dimen>
     <dimen name="top_bottom_margin">5dp</dimen>
     <dimen name="text_size">15sp</dimen>
+    <dimen name="def_margins">5dp</dimen>
+    <dimen name="dp10">10dp</dimen>
 </resources>
