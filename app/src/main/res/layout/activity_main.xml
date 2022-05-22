@@ -4,39 +4,49 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/main_background_shape"
     tools:context=".MainActivity">
 
-    <LinearLayout
-        android:id="@+id/button_menu"
-        android:layout_width="300dp"
-        android:layout_height="500dp"
-        android:background="#D8B264"
-        android:orientation="vertical"
-        app:layout_constraintTop_toBottomOf="@+id/top_menu"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/lower_menu" />
 
-    <FrameLayout
+    <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/lower_menu"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
+        android:layout_height="wrap_content"
+        android:background="@color/design_default_color_primary"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:background="#7D40D5"/>
-    <FrameLayout
-        android:id="@+id/top_menu"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/lower_menu" />
+
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/top_layout"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
+        android:layout_height="?attr/actionBarSize"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/top_menu"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/design_default_color_primary"
+            app:menu="@menu/top_menu"
+            app:navigationIcon="@drawable/ic_baseline_menu_24"
+            app:title="@string/app_name"
+            app:titleTextColor="@color/white" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+
+    <FrameLayout
+        android:id="@+id/fragment_placeholder"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/lower_menu"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:background="#7D40D5"
-        />
-
-
-
-
+        app:layout_constraintTop_toBottomOf="@+id/top_layout" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
