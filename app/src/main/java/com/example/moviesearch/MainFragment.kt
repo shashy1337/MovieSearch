@@ -1,16 +1,14 @@
 package com.example.moviesearch
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.moviesearch.Adapters.FilmAdapter
-import com.example.moviesearch.Adapters.ItemOffsetDecoration
-import kotlinx.android.synthetic.main.fragment_main.*
-
+import androidx.recyclerview.widget.RecyclerView
+import com.example.moviesearch.AdaptersItems.FilmAdapter
+import com.example.moviesearch.AdaptersItems.ItemOffsetDecoration
 
 class MainFragment : Fragment() {
 
@@ -26,7 +24,7 @@ class MainFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initRecyclerView()
+        initRecyclerView(view.findViewById(R.id.recycler_view_films))
     }
 
     override fun onCreateView(
@@ -38,23 +36,17 @@ class MainFragment : Fragment() {
     }
 
 
-    fun initRecyclerView(){
+    fun initRecyclerView(recyclerView: RecyclerView){
 
-        recycler_view_films.apply {
+        filmAdapter = FilmAdapter(requireActivity() as MainActivity)
 
-            filmAdapter = FilmAdapter(object : FilmAdapter.OnItemClickListener{
-                override fun click(film: FilmDataClass) {
-                    (requireActivity() as MainActivity).launchDetailsFragment(film)
-                }
-            })
-
+        recyclerView.apply {
             layoutManager = LinearLayoutManager(requireContext())
-
             adapter = filmAdapter
             addItemDecoration(ItemOffsetDecoration(requireContext()))
 
         }
-        filmAdapter.addItem(filmDataBase)
+        filmAdapter.items = filmDataBase
     }
 
 }

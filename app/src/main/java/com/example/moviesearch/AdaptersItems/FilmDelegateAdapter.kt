@@ -1,6 +1,5 @@
-package com.example.moviesearch.Adapters
+package com.example.moviesearch.AdaptersItems
 
-import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,10 +9,11 @@ import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.moviesearch.FilmDataClass
 import com.example.moviesearch.R
+import com.hannesdorfmann.adapterdelegates4.AbsListItemAdapterDelegate
 
-class FilmAdapter(private val clickListener: OnItemClickListener) : RecyclerView.Adapter<FilmAdapter.FilmViewHolder>(){
+class FilmDelegateAdapter(private val clickListener: OnItemClickListener)
+    : AbsListItemAdapterDelegate<FilmDataClass, RecyclerViewItems, FilmDelegateAdapter.FilmViewHolder>() {
 
-    val filmList = mutableListOf<FilmDataClass>()
 
     class FilmViewHolder(view : View) : RecyclerView.ViewHolder(view){
         private val poster : ImageView = view.findViewById(R.id.poster)
@@ -28,31 +28,32 @@ class FilmAdapter(private val clickListener: OnItemClickListener) : RecyclerView
 
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FilmViewHolder {
-        return FilmViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.film_item, parent, false))
+    override fun onCreateViewHolder(parent: ViewGroup): FilmViewHolder {
+        return FilmViewHolder(LayoutInflater.from(parent.context)
+            .inflate(R.layout.film_item, parent, false))
     }
 
-    override fun onBindViewHolder(holder: FilmViewHolder, position: Int) {
-        when(holder){
-            is FilmViewHolder -> {
-                holder.bind(filmList[position])
+    override fun isForViewType(
+        item: RecyclerViewItems,
+        items: MutableList<RecyclerViewItems>,
+        position: Int
+    ): Boolean {
+        return item is FilmDataClass
+    }
 
+    override fun onBindViewHolder(
+        item: FilmDataClass,
+        holder: FilmViewHolder,
+        payloads: MutableList<Any>
+    ) {
+        when(holder){
+            else -> {
+                holder.bind(item)
                 holder.itemView.findViewById<CardView>(R.id.item_container).setOnClickListener {
-                    clickListener.click(filmList[position])
+                    clickListener.click(item)
                 }
             }
         }
-    }
-
-    override fun getItemCount(): Int {
-        return filmList.size
-    }
-
-    @SuppressLint("NotifyDataSetChanged")
-    fun addItem(films : List<FilmDataClass>){
-        filmList.clear()
-        filmList.addAll(films)
-        notifyDataSetChanged()
     }
 
     interface OnItemClickListener {

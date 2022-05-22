@@ -1,4 +1,4 @@
-package com.example.moviesearch.Adapters
+package com.example.moviesearch.AdaptersItems
 
 import android.content.Context
 import android.graphics.Rect
