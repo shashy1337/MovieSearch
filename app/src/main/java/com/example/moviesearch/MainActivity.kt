@@ -87,12 +87,12 @@ class MainActivity : AppCompatActivity() {
     override fun onBackPressed() {
         super.onBackPressed()
         AlertDialog.Builder(ContextThemeWrapper(this, R.style.DialogNew))
-            .setTitle("Вы хотите выйти?")
+            .setTitle(R.string.close)
             .setIcon(R.drawable.ic_baseline_warning_24)
-            .setPositiveButton("Да") { _, _ ->
+            .setPositiveButton(R.string.yes) { _, _ ->
                 finish()
             }
-            .setNegativeButton("Нет") { _, _ ->
+            .setNegativeButton(R.string.no) { _, _ ->
 
             }
             .show()
