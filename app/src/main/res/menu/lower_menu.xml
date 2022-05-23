@@ -14,10 +14,6 @@
         app:showAsAction="ifRoom"
         />
 
-    <item android:id="@+id/watch_later"
-        android:icon="@drawable/ic_baseline_watch_later_24"
-        android:title="@string/later"
-        app:showAsAction="ifRoom"/>
 
     <item android:id="@+id/compillation"
         android:icon="@drawable/ic_baseline_view_compillation_24"

@@ -61,10 +61,7 @@ class MainActivity : AppCompatActivity() {
                     Toast.makeText(this, R.string.menu, Toast.LENGTH_SHORT).show()
                     return@setOnItemSelectedListener true
                 }
-                R.id.watch_later -> {
-                    Toast.makeText(this, R.string.later, Toast.LENGTH_SHORT).show()
-                    return@setOnItemSelectedListener true
-                }
+
                 else -> return@setOnItemSelectedListener false
             }
         }
