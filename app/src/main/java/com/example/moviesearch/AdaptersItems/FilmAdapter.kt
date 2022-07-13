@@ -1,8 +1,9 @@
 package com.example.moviesearch.AdaptersItems
 
 import android.annotation.SuppressLint
-import com.example.moviesearch.FilmDataClass
-import com.example.moviesearch.MainActivity
+import com.example.moviesearch.model.FilmDataClass
+import com.example.moviesearch.Interfaces.RecyclerViewItems
+import com.example.moviesearch.Activitys.MainActivity
 import com.hannesdorfmann.adapterdelegates4.ListDelegationAdapter
 
 class FilmAdapter(requireActivity: MainActivity) : ListDelegationAdapter<List<RecyclerViewItems>>() {
