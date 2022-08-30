@@ -3,6 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/igrok/AndroidStudioProjects/MovieSearch/app/src/main/res/drawable/background_search_view.xml" value="0.239" />
+        <entry key="..\:/Users/igrok/AndroidStudioProjects/MovieSearch/app/src/main/res/drawable/main_background_shape.xml" value="0.239" />
+        <entry key="..\:/Users/igrok/AndroidStudioProjects/MovieSearch/app/src/main/res/drawable/search_decoration.xml" value="0.239" />
         <entry key="..\:/Users/igrok/AndroidStudioProjects/MovieSearch/app/src/main/res/layout/activity_main.xml" value="0.16" />
         <entry key="..\:/Users/igrok/AndroidStudioProjects/MovieSearch/app/src/main/res/layout/film_item.xml" value="0.3509963768115942" />
         <entry key="..\:/Users/igrok/AndroidStudioProjects/MovieSearch/app/src/main/res/layout/fragment_details.xml" value="0.18541666666666667" />

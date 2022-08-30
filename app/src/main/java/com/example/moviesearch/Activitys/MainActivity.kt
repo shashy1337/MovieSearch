@@ -15,7 +15,6 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var topbar : MaterialToolbar
     private lateinit var bottomBar : BottomNavigationView
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,25 +30,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun topBottomBarInit(){
-        topbar = findViewById(R.id.top_menu)
-        topbar.setNavigationOnClickListener {
-            Toast.makeText(this, R.string.navigation, Toast.LENGTH_SHORT).show()
-        }
-        topbar.setOnMenuItemClickListener {
-            when(it.itemId){
-                R.id.settings_top -> {
-                    Toast.makeText(this, R.string.settings, Toast.LENGTH_SHORT).show()
-                    return@setOnMenuItemClickListener true
-                }
-
-                R.id.more -> {
-                    Toast.makeText(this, R.string.more, Toast.LENGTH_SHORT).show()
-                    return@setOnMenuItemClickListener true
-                }
-
-                else -> return@setOnMenuItemClickListener false
-            }
-        }
 
         bottomBar = findViewById(R.id.lower_menu)
         bottomBar.setOnItemSelectedListener {
