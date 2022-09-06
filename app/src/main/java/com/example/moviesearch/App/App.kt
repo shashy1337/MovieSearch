@@ -1,18 +1,11 @@
-package com.example.moviesearch
+package com.example.moviesearch.App
 
-import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.example.moviesearch.AdaptersItems.FilmAdapter
-import com.example.moviesearch.AdaptersItems.ItemOffsetDecoration
+import android.app.Application
+import com.example.moviesearch.Interfaces.RecyclerViewItems
+import com.example.moviesearch.R
+import com.example.moviesearch.model.FilmDataClass
 
-class MainFragment : Fragment() {
-
-    private lateinit var filmAdapter: FilmAdapter
+class App : Application() {
 
     val filmDataBase = listOf(
         FilmDataClass("Back To The Future", R.drawable.backttf, "Marty McFly, a 17 year old high school student gets lost in 1955 by an accident, 30 years back in time. With the help of his friend Dr. Emmet Brown, he is desperately trying to find his way back to the future in the year 1985. It becomes a battle against the clock."),
@@ -22,31 +15,15 @@ class MainFragment : Fragment() {
         FilmDataClass("Star Wars", R.drawable.sw, "The Star Wars franchise depicts the adventures of characters \"A long time ago in a galaxy far, far away\", in which humans and many species of aliens (often humanoid) co-exist with robots, or 'droids', who may assist them in their daily routines; space travel between planets is common due to lightspeed hyperspace ...")
     )
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        initRecyclerView(view.findViewById(R.id.recycler_view_films))
+    val favList = mutableListOf<RecyclerViewItems>()
+
+    override fun onCreate() {
+        super.onCreate()
+        instance = this
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_main, container, false)
+    companion object {
+        lateinit var instance : App
+            private set
     }
-
-
-    fun initRecyclerView(recyclerView: RecyclerView){
-
-        filmAdapter = FilmAdapter(requireActivity() as MainActivity)
-
-        recyclerView.apply {
-            layoutManager = LinearLayoutManager(requireContext())
-            adapter = filmAdapter
-            addItemDecoration(ItemOffsetDecoration(requireContext()))
-
-        }
-        filmAdapter.items = filmDataBase
-    }
-
 }

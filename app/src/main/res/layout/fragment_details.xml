@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DetailFragment">
+    tools:context=".Fragments.DetailFragment">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/app_bar"
@@ -52,9 +52,22 @@
         android:layout_margin="16dp"
         android:backgroundTint="#AFAFAF"
         app:layout_anchor="@id/app_bar"
-        app:layout_anchorGravity="bottom|right"
+        app:layout_anchorGravity="bottom|end"
         app:srcCompat="@drawable/ic_baseline_share_24"
-        android:tint="@android:color/white"/>
+        android:tint="@android:color/white"
+        android:contentDescription="@string/fab" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/favourite_fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:backgroundTint="#AFAFAF"
+        app:layout_anchor="@id/app_bar"
+        app:layout_anchorGravity="bottom|start"
+        app:srcCompat="@drawable/ic_baseline_favorite_border_24"
+        android:tint="@android:color/white"
+        android:contentDescription="@string/fab"/>
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -64,9 +77,12 @@
         <TextView
             android:id="@+id/details_description"
             android:textColor="@color/white"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="30dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
             tools:text="@tools:sample/lorem/random" />
 
     </androidx.core.widget.NestedScrollView>

@@ -7,7 +7,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.moviesearch.FilmDataClass
+import com.example.moviesearch.model.FilmDataClass
+import com.example.moviesearch.Interfaces.RecyclerViewItems
 import com.example.moviesearch.R
 import com.hannesdorfmann.adapterdelegates4.AbsListItemAdapterDelegate
 

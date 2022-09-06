@@ -13,4 +13,6 @@
     <string name="close">Вы хотите выйти?</string>
     <string name="yes">Да</string>
     <string name="no">Нет</string>
+    <string name="fav_films_string">Избранные фильмы</string>
+    <string name="fab">FAB</string>
 </resources>

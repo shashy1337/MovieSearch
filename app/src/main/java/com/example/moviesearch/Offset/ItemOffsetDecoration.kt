@@ -1,4 +1,4 @@
-package com.example.moviesearch.AdaptersItems
+package com.example.moviesearch.Offset
 
 import android.content.Context
 import android.graphics.Rect

@@ -1,16 +1,20 @@
-package com.example.moviesearch
+package com.example.moviesearch.Activitys
 
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.view.ContextThemeWrapper
+import com.example.moviesearch.Fragments.DetailFragment
+import com.example.moviesearch.Fragments.FavouriteFilmsFragment
+import com.example.moviesearch.model.FilmDataClass
+import com.example.moviesearch.Fragments.MainFragment
+import com.example.moviesearch.R
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var topbar : MaterialToolbar
     private lateinit var bottomBar : BottomNavigationView
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,25 +30,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun topBottomBarInit(){
-        topbar = findViewById(R.id.top_menu)
-        topbar.setNavigationOnClickListener {
-            Toast.makeText(this, R.string.navigation, Toast.LENGTH_SHORT).show()
-        }
-        topbar.setOnMenuItemClickListener {
-            when(it.itemId){
-                R.id.settings_top -> {
-                    Toast.makeText(this, R.string.settings, Toast.LENGTH_SHORT).show()
-                    return@setOnMenuItemClickListener true
-                }
-
-                R.id.more -> {
-                    Toast.makeText(this, R.string.more, Toast.LENGTH_SHORT).show()
-                    return@setOnMenuItemClickListener true
-                }
-
-                else -> return@setOnMenuItemClickListener false
-            }
-        }
 
         bottomBar = findViewById(R.id.lower_menu)
         bottomBar.setOnItemSelectedListener {
@@ -54,11 +39,19 @@ class MainActivity : AppCompatActivity() {
                     return@setOnItemSelectedListener true
                 }
                 R.id.favourite -> {
-                    Toast.makeText(this, R.string.fav, Toast.LENGTH_SHORT).show()
+                    supportFragmentManager
+                        .beginTransaction()
+                        .replace(R.id.fragment_placeholder, FavouriteFilmsFragment())
+                        .addToBackStack(null)
+                        .commit()
                     return@setOnItemSelectedListener true
                 }
                 R.id.menu -> {
-                    Toast.makeText(this, R.string.menu, Toast.LENGTH_SHORT).show()
+                    supportFragmentManager
+                        .beginTransaction()
+                        .replace(R.id.fragment_placeholder, MainFragment())
+                        .addToBackStack(null)
+                        .commit()
                     return@setOnItemSelectedListener true
                 }
 
