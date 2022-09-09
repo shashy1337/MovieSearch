@@ -8,43 +8,51 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.NavigationUI
+import com.example.moviesearch.Activitys.MainActivity
 import com.example.moviesearch.App.App
 import com.example.moviesearch.model.FilmDataClass
 import com.example.moviesearch.R
+import com.example.moviesearch.databinding.FragmentDetailsBinding
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class DetailFragment : Fragment() {
 
+    private lateinit var binding: FragmentDetailsBinding
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val getExtraFilm = arguments?.get("film") as FilmDataClass
-        setStuff(view, getExtraFilm)
-        initFabButtons(view, getExtraFilm)
+        val filmsArgs = DetailFragmentArgs.fromBundle(requireArguments())
+        setStuff(filmsArgs.film)
+        initFabButtons(filmsArgs.film)
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_details, container, false)
+        binding = DataBindingUtil
+            .inflate(inflater, R.layout.fragment_details, container, false)
+        return binding.root
     }
 
-    fun setStuff(view: View, film : FilmDataClass){
+    fun setStuff(film : FilmDataClass){
 
-        val detailsToolBar = view.findViewById<androidx.appcompat.widget.Toolbar>(R.id.details_toolbar)
-        val detailsPosters = view.findViewById<ImageView>(R.id.details_poster)
-        val detailsDescription = view.findViewById<TextView>(R.id.details_description)
+        val detailsToolBar = binding.detailsToolbar
+        val detailsPosters = binding.detailsPoster
+        val detailsDescription = binding.detailsDescription
 
         detailsToolBar.title = film.title
         detailsPosters.setImageResource(film.poster)
         detailsDescription.text = film.description
     }
 
-    fun initFabButtons(view: View, film: FilmDataClass){
-        val favButton = view.findViewById<FloatingActionButton>(R.id.favourite_fab)
-        val shareButton = view.findViewById<FloatingActionButton>(R.id.details_fab)
+    fun initFabButtons(film: FilmDataClass){
+        val favButton = binding.favouriteFab
+        val shareButton = binding.detailsFab
 
         favButton.setOnClickListener {
             if (!film.isFavourite){

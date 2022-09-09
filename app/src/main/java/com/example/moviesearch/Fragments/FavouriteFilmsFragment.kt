@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.moviesearch.Activitys.MainActivity
 import com.example.moviesearch.AdaptersItems.FilmAdapter
+import com.example.moviesearch.AdaptersItems.FilmFavouriteAdapter
 import com.example.moviesearch.App.App
 import com.example.moviesearch.Interfaces.RecyclerViewItems
 import com.example.moviesearch.Offset.ItemOffsetDecoration
@@ -36,7 +37,7 @@ class FavouriteFilmsFragment : Fragment() {
     }
 
     fun initRvFav(view: View){
-        val adapterFav = FilmAdapter(requireActivity() as MainActivity)
+        val adapterFav = FilmFavouriteAdapter(requireActivity() as MainActivity)
         val rvFav = view.findViewById<RecyclerView>(R.id.favRV)
         rvFav.apply {
                 layoutManager = LinearLayoutManager(requireContext())

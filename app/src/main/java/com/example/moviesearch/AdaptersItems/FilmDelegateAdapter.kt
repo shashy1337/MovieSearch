@@ -10,16 +10,19 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.moviesearch.model.FilmDataClass
 import com.example.moviesearch.Interfaces.RecyclerViewItems
 import com.example.moviesearch.R
+import com.example.moviesearch.databinding.FilmItemBinding
 import com.hannesdorfmann.adapterdelegates4.AbsListItemAdapterDelegate
+import kotlinx.android.synthetic.main.film_item.view.*
 
 class FilmDelegateAdapter(private val clickListener: OnItemClickListener)
     : AbsListItemAdapterDelegate<FilmDataClass, RecyclerViewItems, FilmDelegateAdapter.FilmViewHolder>() {
 
+    private lateinit var binding: FilmItemBinding
 
-    class FilmViewHolder(view : View) : RecyclerView.ViewHolder(view){
-        private val poster : ImageView = view.findViewById(R.id.poster)
-        private val title : TextView = view.findViewById(R.id.title)
-        private val description : TextView = view.findViewById(R.id.description)
+    class FilmViewHolder(binding: FilmItemBinding) : RecyclerView.ViewHolder(binding.root){
+        private val poster : ImageView = binding.poster
+        private val title : TextView = binding.title
+        private val description : TextView = binding.description
 
         fun bind(film: FilmDataClass){
             title.text = film.title
@@ -30,8 +33,8 @@ class FilmDelegateAdapter(private val clickListener: OnItemClickListener)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup): FilmViewHolder {
-        return FilmViewHolder(LayoutInflater.from(parent.context)
-            .inflate(R.layout.film_item, parent, false))
+        binding = FilmItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return FilmViewHolder(binding)
     }
 
     override fun isForViewType(
@@ -50,7 +53,7 @@ class FilmDelegateAdapter(private val clickListener: OnItemClickListener)
         when(holder){
             else -> {
                 holder.bind(item)
-                holder.itemView.findViewById<CardView>(R.id.item_container).setOnClickListener {
+                holder.itemView.item_container.setOnClickListener {
                     clickListener.click(item)
                 }
             }

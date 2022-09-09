@@ -5,78 +5,58 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.view.ContextThemeWrapper
-import com.example.moviesearch.Fragments.DetailFragment
-import com.example.moviesearch.Fragments.FavouriteFilmsFragment
+import androidx.core.view.MenuProvider
+import androidx.databinding.DataBindingUtil
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
+import androidx.navigation.findNavController
+import androidx.navigation.ui.NavigationUI
+import com.example.moviesearch.Fragments.*
 import com.example.moviesearch.model.FilmDataClass
-import com.example.moviesearch.Fragments.MainFragment
 import com.example.moviesearch.R
+import com.example.moviesearch.databinding.ActivityMainBinding
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var bottomBar : BottomNavigationView
+    private lateinit var binding: ActivityMainBinding
+    private lateinit var navController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        topBottomBarInit()
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+        navController = this.findNavController(R.id.myNavHostController)
+        bottomBarInit()
 
-        supportFragmentManager
-            .beginTransaction()
-            .add(R.id.fragment_placeholder, MainFragment())
-            .addToBackStack(null)
-            .commit()
     }
 
-    fun topBottomBarInit(){
-
-        bottomBar = findViewById(R.id.lower_menu)
-        bottomBar.setOnItemSelectedListener {
-            when(it.itemId){
-                R.id.compillation -> {
-                    Toast.makeText(this, R.string.compilation, Toast.LENGTH_SHORT).show()
-                    return@setOnItemSelectedListener true
-                }
-                R.id.favourite -> {
-                    supportFragmentManager
-                        .beginTransaction()
-                        .replace(R.id.fragment_placeholder, FavouriteFilmsFragment())
-                        .addToBackStack(null)
-                        .commit()
-                    return@setOnItemSelectedListener true
-                }
-                R.id.menu -> {
-                    supportFragmentManager
-                        .beginTransaction()
-                        .replace(R.id.fragment_placeholder, MainFragment())
-                        .addToBackStack(null)
-                        .commit()
-                    return@setOnItemSelectedListener true
-                }
-
-                else -> return@setOnItemSelectedListener false
-            }
-        }
+    fun bottomBarInit(){
+        NavigationUI.setupWithNavController(binding.lowerMenu, navController)
     }
 
     fun launchDetailsFragment(film: FilmDataClass) {
-        val bundle = Bundle()
+        navController
+            .navigate(
+                MainFragmentDirections
+                    .actionMainFragmentToDetailFragment(film))
+    }
 
-        bundle.putParcelable("film", film)
-        val fragment = DetailFragment()
-        fragment.arguments = bundle
+    fun launchFavouriteFragment(film : FilmDataClass){
+        navController
+            .navigate(
+                FavouriteFilmsFragmentDirections
+                    .actionFavouriteFilmsFragmentToDetailFragment(film)
+            )
+    }
 
-        supportFragmentManager
-            .beginTransaction()
-            .replace(R.id.fragment_placeholder, fragment)
-            .addToBackStack(null)
-            .commit()
+    override fun onSupportNavigateUp(): Boolean {
+        return navController.navigateUp()
     }
 
     override fun onBackPressed() {
         super.onBackPressed()
-        AlertDialog.Builder(ContextThemeWrapper(this, R.style.DialogNew))
+        /*AlertDialog.Builder(ContextThemeWrapper(this, R.style.DialogNew))
             .setTitle(R.string.close)
             .setIcon(R.drawable.ic_baseline_warning_24)
             .setPositiveButton(R.string.yes) { _, _ ->
@@ -85,7 +65,7 @@ class MainActivity : AppCompatActivity() {
             .setNegativeButton(R.string.no) { _, _ ->
 
             }
-            .show()
+            .show()*/
     }
 
 }

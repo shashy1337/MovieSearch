@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.SearchView
+import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.moviesearch.Activitys.MainActivity
@@ -13,6 +14,7 @@ import com.example.moviesearch.AdaptersItems.FilmAdapter
 import com.example.moviesearch.App.App
 import com.example.moviesearch.Offset.ItemOffsetDecoration
 import com.example.moviesearch.R
+import com.example.moviesearch.databinding.FragmentMainBinding
 import com.example.moviesearch.model.FilmDataClass
 import kotlinx.android.synthetic.main.fragment_main.*
 import java.util.*
@@ -22,29 +24,26 @@ class MainFragment : Fragment() {
 
     private val filmDataBase = App.instance.filmDataBase
     private lateinit var filmAdapter : FilmAdapter
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
+    private lateinit var binding: FragmentMainBinding
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initRecyclerView(view.findViewById(R.id.recycler_view_films))
-        initSearchView(view.findViewById(R.id.search_view))
+        initRecyclerView()
+        initSearchView()
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_main, container, false)
+        binding = DataBindingUtil
+            .inflate(inflater, R.layout.fragment_main, container, false)
+        return binding.root
     }
 
 
-    fun initRecyclerView(recyclerView: RecyclerView){
-
+    fun initRecyclerView(){
+        val recyclerView = binding.recyclerViewFilms
         filmAdapter = FilmAdapter(requireActivity() as MainActivity)
         recyclerView.apply {
             layoutManager = LinearLayoutManager(requireContext())
@@ -54,7 +53,8 @@ class MainFragment : Fragment() {
         filmAdapter.items = filmDataBase
     }
 
-    fun initSearchView(searchView: SearchView){
+    fun initSearchView(){
+        val searchView = binding.searchView
         searchView.setOnClickListener {
             searchView.isIconified = false
         }
